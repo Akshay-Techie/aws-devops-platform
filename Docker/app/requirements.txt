@@ -1,0 +1,24 @@
+# ============================================================
+# requirements.txt — Python dependencies for Project-04 app
+#
+# KEEP THIS MINIMAL — every package = bigger Docker image
+# = slower ECR push/pull = slower K8s pod startup
+#
+# HOW VERSIONS ARE PINNED:
+#   flask==3.0.3      → exact version (reproducible builds)
+#   gunicorn==22.0.0  → exact version
+#
+# WHY GUNICORN AND NOT FLASK DEV SERVER?
+#   Flask's built-in server is single-threaded, not production safe.
+#   Gunicorn is a production WSGI server:
+#     - Multi-worker (handles concurrent requests)
+#     - Battle-tested, used by Instagram, Reddit
+#     - Started via Dockerfile CMD (not python app.py)
+# ============================================================
+
+# Web framework
+flask==3.0.3
+
+# Production WSGI server (replaces Flask dev server in container)
+# CMD in Dockerfile: gunicorn --bind 0.0.0.0:5000 --workers 2 app:app
+gunicorn==22.0.0
