@@ -1,0 +1,46 @@
+# ============================================================
+# .dockerignore — Excludes files from Docker build context
+# Location: docker/app/.dockerignore
+#
+# WHY THIS MATTERS:
+#   When you run "docker build .", Docker sends ALL files in the
+#   directory to the Docker daemon as the "build context".
+#   Large or sensitive files slow down builds and bloat the image.
+#   .dockerignore tells Docker what to skip.
+# ============================================================
+
+# Python cache — never copy compiled bytecode into the image
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment — image installs its own deps via pip
+.venv/
+venv/
+env/
+
+# Test files — not needed to run the app in production
+test_app.py
+pytest.ini
+.pytest_cache/
+
+# Environment files — never bake secrets into the image
+.env
+.env.example
+
+# Git — not needed inside the container
+.git/
+.gitignore
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
