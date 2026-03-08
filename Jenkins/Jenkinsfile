@@ -78,7 +78,7 @@ pipeline {
             steps {
                 // dir() changes into the docker/app directory
                 // same as: cd docker/app
-                dir('docker/app') {
+                dir('Docker/app') {
                     sh '''
                         pip install flask pytest --quiet --break-system-packages
                         export PATH=$PATH:/var/lib/jenkins/.local/bin
@@ -100,7 +100,7 @@ pipeline {
         // ══════════════════════════════════════════════════
         stage('Build Docker Image') {
             steps {
-                dir('docker/app') {
+                dir('Docker/app') {
                     // -t tags the image with the full ECR URI
                     // . means use Dockerfile in current directory
                     sh "docker build -t ${ECR_IMAGE} ."
