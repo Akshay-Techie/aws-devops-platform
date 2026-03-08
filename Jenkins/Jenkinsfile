@@ -80,7 +80,7 @@ pipeline {
                 // same as: cd docker/app
                 dir('docker/app') {
                     sh '''
-                        pip install flask pytest --quiet
+                        pip install flask pytest --quiet --break-system-packages
                         pytest test_app.py -v --tb=short
                     '''
                 }
