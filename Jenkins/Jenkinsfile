@@ -80,7 +80,7 @@ pipeline {
                 // same as: cd docker/app
                 dir('Docker/app') {
                     sh '''
-                        pip install flask pytest --quiet --break-system-packages
+                        pip install -r requirements.txt --quiet --break-system-packages
                         export PATH=$PATH:/var/lib/jenkins/.local/bin
                         pytest test_app.py -v --tb=short
                     '''
