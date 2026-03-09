@@ -20,6 +20,11 @@ import time
 # in the same directory as app.py
 app = Flask(__name__, template_folder='.')
 
+# Prometheus Metrics ─────────────────────────────────────
+# PrometheusMetrics automatically creates /metrics endpoint for Prometheus to scrape.
+from prometheus_flask_exporter import PrometheusMetrics
+metrics = PrometheusMetrics(app)
+
 START_TIME = time.time()
 
 request_counter = {"total": 0, "predict": 0, "health": 0}

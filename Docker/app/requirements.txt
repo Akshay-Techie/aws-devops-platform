@@ -22,3 +22,7 @@ flask==3.0.3
 # Production WSGI server (replaces Flask dev server in container)
 # CMD in Dockerfile: gunicorn --bind 0.0.0.0:5000 --workers 2 app:app
 gunicorn==22.0.0
+
+# For testing (pytest) and monitoring (Prometheus exporter)
+pytest==7.2.0
+prometheus-flask-exporter==0.23.1
