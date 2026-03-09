@@ -46,31 +46,15 @@ class TestHome:
         response = client.get("/")
         assert response.status_code == 200
 
-    def test_returns_json(self, client):
-        """Response must be valid JSON."""
+    def test_returns_html(self, client):
+        """Root endpoint now serves index.html — must return HTML."""
         response = client.get("/")
-        assert response.content_type == "application/json"
+        assert "text/html" in response.content_type
 
-    def test_required_fields(self, client):
-        """Response body must contain all required fields."""
-        data = json.loads(client.get("/").data)
-        assert "app"         in data
-        assert "version"     in data
-        assert "hostname"    in data
-        assert "environment" in data
-        assert "status"      in data
-        assert "uptime_sec"  in data
-        assert "timestamp"   in data
-
-    def test_app_name(self, client):
-        """App name must always be correct."""
-        data = json.loads(client.get("/").data)
-        assert data["app"] == "future-mlops-architect"
-
-    def test_status_value(self, client):
-        """Status field must say 'running'."""
-        data = json.loads(client.get("/").data)
-        assert data["status"] == "running"
+    def test_page_loads(self, client):
+        """Page must have content."""
+        response = client.get("/")
+        assert len(response.data) > 0
 
 
 # ══════════════════════════════════════════════════════════
